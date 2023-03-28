@@ -1,5 +1,5 @@
 package structures
 
-type Identifier interface {
-	Id() uint64
+type Identifier[T comparable] interface {
+	Identify() T
 }
