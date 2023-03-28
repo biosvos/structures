@@ -18,6 +18,6 @@ func (i *Iterator[T]) Next() T {
 	return ret
 }
 
-func (i *Iterator[T]) Add(element ...T) {
-	i.elements = append(i.elements, element...)
+func (i *Iterator[T]) Add(elements ...T) {
+	i.elements = append(i.elements, elements...)
 }
