@@ -11,12 +11,21 @@ func TestStackNew(t *testing.T) {
 	require.NotNil(t, stack)
 }
 
-func TestStackIsEmpty(t *testing.T) {
+func TestStackIsEmptyTrue(t *testing.T) {
 	stack := NewStack[string]()
 
 	ret := stack.IsEmpty()
 
 	require.True(t, ret)
+}
+
+func TestStackIsEmptyFalse(t *testing.T) {
+	stack := NewStack[string]()
+	stack.Push("abc")
+
+	ret := stack.IsEmpty()
+
+	require.False(t, ret)
 }
 
 func TestStackPop(t *testing.T) {

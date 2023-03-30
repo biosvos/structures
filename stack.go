@@ -9,24 +9,39 @@ func NewStack[T any]() *Stack[T] {
 }
 
 func (s *Stack[T]) IsEmpty() bool {
-	return true
+	return s.Size() == 0
 }
 
 func (s *Stack[T]) Pop() T {
-	lastIndex := len(s.elements) - 1
-	ret := s.elements[lastIndex]
-	s.elements = s.elements[:lastIndex]
+	ret := s.lastElement()
+	s.dropLastElement()
 	return ret
 }
 
-func (s *Stack[T]) Push(str T) {
-	s.elements = append(s.elements, str)
+func (s *Stack[T]) Push(element T) {
+	s.append(element)
 }
 
 func (s *Stack[T]) Peek() T {
-	return s.elements[len(s.elements)-1]
+	return s.lastElement()
 }
 
 func (s *Stack[T]) Size() int {
 	return len(s.elements)
+}
+
+func (s *Stack[T]) lastIndex() int {
+	return s.Size() - 1
+}
+
+func (s *Stack[T]) dropLastElement() {
+	s.elements = s.elements[:s.lastIndex()]
+}
+
+func (s *Stack[T]) append(element T) {
+	s.elements = append(s.elements, element)
+}
+
+func (s *Stack[T]) lastElement() T {
+	return s.elements[s.lastIndex()]
 }
