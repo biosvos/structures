@@ -1,13 +1,5 @@
 package structures
 
-type Heap struct {
-	elements []int
-}
-
-func NewHeap() *Heap {
-	return &Heap{}
-}
-
 func parentIndex(index int) int {
 	return (index+1)/2 - 1
 }
@@ -21,6 +13,14 @@ func lessThan(a, b int) bool {
 	return a < b
 }
 
+type Heap struct {
+	elements []int
+}
+
+func NewHeap() *Heap {
+	return &Heap{}
+}
+
 func (h *Heap) Push(value int) {
 	curIdx := len(h.elements)
 	h.elements = append(h.elements, value)
@@ -30,10 +30,6 @@ func (h *Heap) Push(value int) {
 		curIdx = parentIdx
 		parentIdx = parentIndex(curIdx)
 	}
-}
-
-func (h *Heap) existIndex(index int) bool {
-	return 0 <= index && index < len(h.elements)
 }
 
 func (h *Heap) Pop() int {
@@ -76,4 +72,8 @@ func (h *Heap) Pop() int {
 
 func (h *Heap) IsEmpty() bool {
 	return len(h.elements) == 0
+}
+
+func (h *Heap) existIndex(index int) bool {
+	return 0 <= index && index < len(h.elements)
 }
